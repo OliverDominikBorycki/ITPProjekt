@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
-
+import java.net.URL;
 public class View4B1W extends JFrame {
     private JLabel[] imageLabels = new JLabel[4];
     private JTextField answerField = new JTextField(20);
@@ -44,14 +44,16 @@ public class View4B1W extends JFrame {
         setVisible(true);
     }
 
-    public void updateImages(File[] imageFiles) {
-        for (int i = 0; i < 4; i++) {
-            if (imageFiles[i].exists()) {
-                imageLabels[i].setIcon(new ImageIcon(imageFiles[i].getAbsolutePath()));
-                imageLabels[i].setText(""); // Text entfernen, wenn das Bild geladen wurde
-            } else {
+    public void updateImages(URL[] imageUrls) {
+        for (int i = 0; i < imageUrls.length; i++) {
+            try {
+                ImageIcon icon = new ImageIcon(imageUrls[i]);
+                imageLabels[i].setIcon(icon);  // Bild setzen
+                imageLabels[i].setText("");    // Text entfernen
+            } catch (Exception e) {
+                e.printStackTrace();  // Fehlerausgabe in der Konsole
                 imageLabels[i].setIcon(null);
-                imageLabels[i].setText("Bild nicht gefunden");
+                imageLabels[i].setText("Bild konnte nicht geladen werden");
             }
         }
     }
