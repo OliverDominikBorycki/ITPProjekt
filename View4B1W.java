@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.net.URL;
+import java.util.Random;
 public class View4B1W extends JFrame {
     private JLabel[] imageLabels = new JLabel[4];
     private JTextField answerField = new JTextField(20);
