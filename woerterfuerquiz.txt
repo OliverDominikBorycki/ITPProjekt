@@ -1,10 +1,10 @@
 Projektphase
 Qualitätsanforderungen
-Vertragsgegenstand
+Vertragsgegenstand - gemacht
 Produktfunktion
 Trendanalyse
 Machbarkeit
 Meilenstein - gemacht
-Aufwandschätzung - gemacht
+Aufwandsschätzung - gemacht
 Implementierungsphase
 Ist-Zustand
