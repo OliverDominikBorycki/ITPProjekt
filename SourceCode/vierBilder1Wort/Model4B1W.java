@@ -1,8 +1,6 @@
-package vierBilder1Wort;
-
 import java.net.URL;
 import java.util.Random;
-package vierBilder1Wort;
+
 public class Model4B1W {
     private String[] words = {"Aufwandsschätzung", "Meilenstein", "Vertragsgegenstand", "Trendanalyse"};
     private String[][] imageUrls = {

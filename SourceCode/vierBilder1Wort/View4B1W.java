@@ -1,5 +1,3 @@
-package vierBilder1Wort;
-
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;

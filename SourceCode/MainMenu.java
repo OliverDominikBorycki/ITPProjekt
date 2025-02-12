@@ -1,7 +1,3 @@
-import vierBilder1Wort.Controller4B1W;
-import vierBilder1Wort.Model4B1W;
-import vierBilder1Wort.View4B1W;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
