@@ -45,6 +45,19 @@ public class MainMenu extends JFrame {
                 System.exit(0); // Programm beenden
             }
         });
+        JButton editQuestionsButton = new JButton("Fragen bearbeiten");
+
+        // Aktion für den "Fragen bearbeiten"-Button
+        editQuestionsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ControllerBearbeiten(new ModelBearbeiten(), new ViewBearbeiten());
+                dispose(); // Hauptmenü schließen
+            }
+        });
+
+        panel.add(Box.createRigidArea(new Dimension(0, 20))); // Abstand
+        panel.add(editQuestionsButton);
 
         // Abstand zwischen den Buttons
         panel.add(Box.createVerticalGlue());
@@ -54,11 +67,19 @@ public class MainMenu extends JFrame {
         panel.add(Box.createVerticalGlue());
 
         return panel;
+
+
     }
 
     private void launchQuiz() {
-        // Quiz-Setup: Modell, View und Controller
         Model4B1W model = new Model4B1W();
+
+        try {
+            model.loadFromFile("fragen.txt"); // Datei mit den Fragen laden
+        } catch (Exception e) {
+            System.out.println("Fehler beim Laden der Datei: " + e.getMessage());
+        }
+
         View4B1W view = new View4B1W();
         new Controller4B1W(model, view);
 

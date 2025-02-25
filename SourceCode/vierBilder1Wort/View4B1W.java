@@ -1,8 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
 import java.net.URL;
-import java.util.Random;
 
 public class View4B1W extends JFrame {
     private JLabel[] imageLabels = new JLabel[4];
@@ -10,6 +8,8 @@ public class View4B1W extends JFrame {
     private JButton submitButton = new JButton("Antwort überprüfen");
     private JLabel feedbackLabel = new JLabel(" ");
     private JLabel scoreLabel = new JLabel("Punktestand: 0");
+    private JButton restartButton = new JButton("Neustart");
+    private JButton mainMenuButton = new JButton("Hauptmenü");
 
     public View4B1W() {
         setTitle("4 Bilder 1 Wort");
@@ -41,6 +41,12 @@ public class View4B1W extends JFrame {
         feedbackPanel.add(scoreLabel, BorderLayout.EAST);
         add(feedbackPanel, BorderLayout.NORTH);
 
+        // Neustart und Hauptmenü Buttons
+        JPanel controlPanel = new JPanel();
+        controlPanel.add(restartButton);
+        controlPanel.add(mainMenuButton);
+        add(controlPanel, BorderLayout.EAST);
+
         setSize(600, 400);
         setLocationRelativeTo(null);
         setVisible(true);
@@ -61,22 +67,36 @@ public class View4B1W extends JFrame {
     }
 
     public String getAnswer() {
-        return answerField.getText();
+        return answerField.getText().trim();  // Eingabe aus dem Textfeld holen
     }
 
     public void clearAnswer() {
-        answerField.setText("");
+        answerField.setText("");  // Antwort zurücksetzen
     }
 
     public void setFeedback(String feedback) {
-        feedbackLabel.setText(feedback);
+        feedbackLabel.setText(feedback);  // Feedback anzeigen
     }
 
     public void updateScore(int score) {
-        scoreLabel.setText("Punktestand: " + score);
+        scoreLabel.setText("Punktestand: " + score);  // Punktestand anzeigen
     }
 
     public JButton getSubmitButton() {
-        return submitButton;
+        return submitButton;  // Zugriff auf den Submit-Button
+    }
+
+    public JButton getRestartButton() {
+        return restartButton;  // Zugriff auf den Neustart-Button
+    }
+
+    public JButton getMainMenuButton() {
+        return mainMenuButton;  // Zugriff auf den Hauptmenü-Button
+    }
+
+    public void showMainMenu() {
+        // Hauptmenü anzeigen
+        dispose(); // Schließt das aktuelle Fenster
+        new MainMenu(); // Öffnet das Hauptmenüentiert!");
     }
 }

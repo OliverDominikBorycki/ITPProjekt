@@ -62,29 +62,7 @@ public class Model4B1W {
         return currentIndex < questionCount;
     }
 
-    public boolean addQuestion(String word, String[] images) {
-        if (questionCount < words.length) {
-            words[questionCount] = word;
-            imageUrls[questionCount] = images;
-            questionCount++;
-            return true;
-        }
-        return false;
-    }
 
-    public boolean removeQuestion(int index) {
-        if (index >= 0 && index < questionCount) {
-            for (int i = index; i < questionCount - 1; i++) {
-                words[i] = words[i + 1];
-                imageUrls[i] = imageUrls[i + 1];
-            }
-            words[questionCount - 1] = null;
-            imageUrls[questionCount - 1] = new String[4];
-            questionCount--;
-            return true;
-        }
-        return false;
-    }
 
     public boolean loadFromFile(String filename) {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
@@ -126,4 +104,10 @@ public class Model4B1W {
             return false;
         }
     }
+    public void restartGame() {
+        currentIndex = 0;
+        score = 0;
+        shuffleWordsAndImages(); // Neu mischen, um das Spiel zufällig zu starten
+    }
+
 }
