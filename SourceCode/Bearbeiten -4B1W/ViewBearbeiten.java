@@ -1,35 +1,57 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.List;
 
 public class ViewBearbeiten extends JFrame {
-    private DefaultListModel<String> listModel = new DefaultListModel<>();
-    private JList<String> fragenListe = new JList<>(listModel);
-    private JTextField frageField = new JTextField(20);
+    private String[] fragenListe = new String[0]; // Einfaches Array für die Fragen
+    private JTextArea fragenTextArea = new JTextArea(10, 50); // Textfeld zur Anzeige der Fragen
+
+    private JTextField wortField = new JTextField(15);
+    private JTextField bild1Field = new JTextField(30);
+    private JTextField bild2Field = new JTextField(30);
+    private JTextField bild3Field = new JTextField(30);
+    private JTextField bild4Field = new JTextField(30);
+
     private JButton addButton = new JButton("Hinzufügen");
-    private JButton removeButton = new JButton("Löschen");
+    private JButton removeButton = new JButton("Letztes Wort löschen");
     private JButton mainMenuButton = new JButton("Hauptmenü");
 
     public ViewBearbeiten() {
         setTitle("Fragen bearbeiten");
-        setSize(400, 300);
+        setSize(600, 400);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        // Liste mit Fragen
-        add(new JScrollPane(fragenListe), BorderLayout.CENTER);
+        // Textfeld zur Anzeige der Fragen
+        fragenTextArea.setEditable(false);
+        add(new JScrollPane(fragenTextArea), BorderLayout.CENTER);
 
-        // Eingabefeld + Buttons
+        // Eingabefelder + Buttons
         JPanel inputPanel = new JPanel();
-        inputPanel.add(new JLabel("Neue Frage:"));
-        inputPanel.add(frageField);
+        inputPanel.setLayout(new GridLayout(6, 2, 5, 5));
+
+        inputPanel.add(new JLabel("Wort:"));
+        inputPanel.add(wortField);
+
+        inputPanel.add(new JLabel("Bild 1 URL:"));
+        inputPanel.add(bild1Field);
+
+        inputPanel.add(new JLabel("Bild 2 URL:"));
+        inputPanel.add(bild2Field);
+
+        inputPanel.add(new JLabel("Bild 3 URL:"));
+        inputPanel.add(bild3Field);
+
+        inputPanel.add(new JLabel("Bild 4 URL:"));
+        inputPanel.add(bild4Field);
+
         inputPanel.add(addButton);
+        inputPanel.add(removeButton);
+
         add(inputPanel, BorderLayout.NORTH);
 
         // Steuerungs-Buttons
         JPanel controlPanel = new JPanel();
-        controlPanel.add(removeButton);
         controlPanel.add(mainMenuButton);
         add(controlPanel, BorderLayout.SOUTH);
 
@@ -37,11 +59,22 @@ public class ViewBearbeiten extends JFrame {
     }
 
     public String getNeueFrage() {
-        return frageField.getText().trim();
+        String wort = wortField.getText().trim();
+        String bild1 = bild1Field.getText().trim();
+        String bild2 = bild2Field.getText().trim();
+        String bild3 = bild3Field.getText().trim();
+        String bild4 = bild4Field.getText().trim();
+
+        // Format wie gewünscht zurückgeben
+        return wort + "|" + bild1 + "," + bild2 + "," + bild3 + "," + bild4;
     }
 
     public void clearInput() {
-        frageField.setText("");
+        wortField.setText("");
+        bild1Field.setText("");
+        bild2Field.setText("");
+        bild3Field.setText("");
+        bild4Field.setText("");
     }
 
     public JButton getAddButton() {
@@ -56,14 +89,16 @@ public class ViewBearbeiten extends JFrame {
         return mainMenuButton;
     }
 
-    public int getSelectedFrageIndex() {
-        return fragenListe.getSelectedIndex();
+
+    public void setFragenListe(String[] fragen) {
+        fragenTextArea.setText("");
+        if (fragen.length == 0) return;
+
+        String text = "";
+        for (int i = 0; i < fragen.length; i++) {
+            text += fragen[i] + "\n";
+        }
+        fragenTextArea.setText(text);
     }
 
-    public void updateFragenListe(List<String> fragen) {
-        listModel.clear();
-        for (String frage : fragen) {
-            listModel.addElement(frage);
-        }
-    }
 }

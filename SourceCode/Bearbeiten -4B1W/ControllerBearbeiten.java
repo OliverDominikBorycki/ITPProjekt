@@ -16,7 +16,7 @@ public class ControllerBearbeiten {
                 String neueFrage = view.getNeueFrage();
                 if (!neueFrage.isEmpty()) {
                     model.addFrage(neueFrage);
-                    view.updateFragenListe(model.getFragenListe());
+                    view.setFragenListe(model.getFragenListe()); // Direkte Übergabe des Arrays
                     view.clearInput();
                 } else {
                     JOptionPane.showMessageDialog(view, "Bitte eine Frage eingeben!", "Fehler", JOptionPane.ERROR_MESSAGE);
@@ -27,12 +27,11 @@ public class ControllerBearbeiten {
         view.getRemoveButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int index = view.getSelectedFrageIndex();
-                if (index != -1) {
-                    model.removeFrage(index);
-                    view.updateFragenListe(model.getFragenListe());
+                if (model.getFragenListe().length > 0) {
+                    model.removeLetzteFrage();
+                    view.setFragenListe(model.getFragenListe()); // Aktualisierung in der View
                 } else {
-                    JOptionPane.showMessageDialog(view, "Bitte eine Frage auswählen!", "Fehler", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(view, "Keine Fragen zum Löschen!", "Fehler", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -45,6 +44,6 @@ public class ControllerBearbeiten {
             }
         });
 
-        view.updateFragenListe(model.getFragenListe());
+        view.setFragenListe(model.getFragenListe()); // Initiale Befüllung
     }
 }

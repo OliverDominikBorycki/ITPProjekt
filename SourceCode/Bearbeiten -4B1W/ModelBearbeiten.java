@@ -1,9 +1,7 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ModelBearbeiten {
-    private List<String> fragenListe = new ArrayList<>();
+    private String[] fragenListe = new String[0];
     private final String dateiName = "fragen.txt";
 
     public ModelBearbeiten() {
@@ -11,12 +9,27 @@ public class ModelBearbeiten {
     }
 
     public void loadFromFile() {
-        fragenListe.clear();
         try (BufferedReader reader = new BufferedReader(new FileReader(dateiName))) {
             String line;
+            int count = 0;
+
+            // Zähle die Zeilen für die Größe des Arrays
             while ((line = reader.readLine()) != null) {
-                fragenListe.add(line);
+                count++;
             }
+
+            // Neues Array mit der richtigen Größe erstellen
+            fragenListe = new String[count];
+
+            // Datei erneut lesen und ins Array speichern
+            reader.close();
+            BufferedReader reader2 = new BufferedReader(new FileReader(dateiName));
+
+            for (int i = 0; i < count; i++) {
+                fragenListe[i] = reader2.readLine();
+            }
+
+            reader2.close();
         } catch (IOException e) {
             System.out.println("Fehler beim Laden der Datei: " + e.getMessage());
         }
@@ -34,18 +47,34 @@ public class ModelBearbeiten {
     }
 
     public void addFrage(String frage) {
-        fragenListe.add(frage);
+        // Neues Array mit +1 Platz erstellen
+        String[] neu = new String[fragenListe.length + 1];
+
+        // Manuelles Kopieren
+        for (int i = 0; i < fragenListe.length; i++) {
+            neu[i] = fragenListe[i];
+        }
+
+        // Neues Element hinzufügen
+        neu[neu.length - 1] = frage;
+        fragenListe = neu;
+
         saveToFile();
     }
 
-    public void removeFrage(int index) {
-        if (index >= 0 && index < fragenListe.size()) {
-            fragenListe.remove(index);
-            saveToFile();
-        }
-    }
 
-    public List<String> getFragenListe() {
+    public String[] getFragenListe() {
         return fragenListe;
     }
+    public void removeLetzteFrage() {
+        if (fragenListe.length == 0) return;
+
+        String[] neu = new String[fragenListe.length - 1];
+        for (int i = 0; i < neu.length; i++) {
+            neu[i] = fragenListe[i];
+        }
+        fragenListe = neu;
+        saveToFile();
+    }
+
 }

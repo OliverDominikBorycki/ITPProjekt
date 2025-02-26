@@ -25,10 +25,12 @@ public class MainMenu extends JFrame {
 
         JButton startQuizButton = new JButton("Quiz starten");
         JButton exitButton = new JButton("Beenden");
+        JButton editQuestionsButton = new JButton("Fragen bearbeiten");
 
         // Buttons mittig ausrichten
         startQuizButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         exitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        editQuestionsButton.setAlignmentX(Component.CENTER_ALIGNMENT); // Hier hinzufügen
 
         // Aktion für den "Quiz starten"-Button
         startQuizButton.addActionListener(new ActionListener() {
@@ -45,7 +47,6 @@ public class MainMenu extends JFrame {
                 System.exit(0); // Programm beenden
             }
         });
-        JButton editQuestionsButton = new JButton("Fragen bearbeiten");
 
         // Aktion für den "Fragen bearbeiten"-Button
         editQuestionsButton.addActionListener(new ActionListener() {
@@ -56,20 +57,18 @@ public class MainMenu extends JFrame {
             }
         });
 
-        panel.add(Box.createRigidArea(new Dimension(0, 20))); // Abstand
-        panel.add(editQuestionsButton);
-
-        // Abstand zwischen den Buttons
+        // Buttons zum Panel hinzufügen
         panel.add(Box.createVerticalGlue());
         panel.add(startQuizButton);
+        panel.add(Box.createRigidArea(new Dimension(0, 20))); // Vertikaler Abstand
+        panel.add(editQuestionsButton);
         panel.add(Box.createRigidArea(new Dimension(0, 20))); // Vertikaler Abstand
         panel.add(exitButton);
         panel.add(Box.createVerticalGlue());
 
         return panel;
-
-
     }
+
 
     private void launchQuiz() {
         Model4B1W model = new Model4B1W();
