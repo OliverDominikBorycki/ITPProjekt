@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 public class MainMenu extends JFrame {
     public MainMenu() {
-        setTitle("4 Bilder 1 Wort - Hauptmenü");
+        setTitle("ITP-Lernplattform");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(600, 400);
         setLocationRelativeTo(null); // Zentriert das Fenster auf dem Bildschirm
@@ -23,9 +23,9 @@ public class MainMenu extends JFrame {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS)); // Vertikale Anordnung
 
-        JButton startQuizButton = new JButton("Quiz starten");
+        JButton startQuizButton = new JButton("4B1W");
         JButton exitButton = new JButton("Beenden");
-        JButton editQuestionsButton = new JButton("Fragen bearbeiten");
+        JButton editQuestionsButton = new JButton("Fragen bearbeiten (4B1W)");
 
         // Buttons mittig ausrichten
         startQuizButton.setAlignmentX(Component.CENTER_ALIGNMENT);
