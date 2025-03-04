@@ -15,6 +15,10 @@ public class ViewBearbeiten extends JFrame {
     private JButton removeButton = new JButton("Letztes Wort löschen");
     private JButton mainMenuButton = new JButton("Hauptmenü");
 
+    /**
+     * Konstruktor für die Bearbeitungsansicht.
+     * Erstellt die GUI und das Layout.
+     */
     public ViewBearbeiten() {
         setTitle("Fragen bearbeiten");
         setSize(600, 400);
@@ -58,6 +62,12 @@ public class ViewBearbeiten extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Liest die eingegebene Frage und deren zugehörige Bild-URLs aus den Textfeldern
+     * und gibt sie im entsprechenden Format zurück.
+     *
+     * @return Die neue Frage im Format "Wort|Bild1,Bild2,Bild3,Bild4"
+     */
     public String getNeueFrage() {
         String wort = wortField.getText().trim();
         String bild1 = bild1Field.getText().trim();
@@ -68,7 +78,9 @@ public class ViewBearbeiten extends JFrame {
         // Format wie gewünscht zurückgeben
         return wort + "|" + bild1 + "," + bild2 + "," + bild3 + "," + bild4;
     }
-
+    /**
+     * Löscht den Inhalt aller Eingabefelder, um eine neue Frage einzugeben.
+     */
     public void clearInput() {
         wortField.setText("");
         bild1Field.setText("");
@@ -89,6 +101,12 @@ public class ViewBearbeiten extends JFrame {
         return mainMenuButton;
     }
 
+
+    /**
+     * Aktualisiert die angezeigte Liste der Fragen im Textfeld.
+     *
+     * @param fragen Array mit den aktuellen Fragen.
+     */
 
     public void setFragenListe(String[] fragen) {
         fragenTextArea.setText("");

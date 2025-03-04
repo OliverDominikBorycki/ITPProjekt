@@ -10,30 +10,30 @@ public class MainMenu extends JFrame {
         setSize(600, 400);
         setLocationRelativeTo(null); // Zentriert das Fenster auf dem Bildschirm
 
-        // Hauptmenü erstellen
         JPanel mainMenuPanel = createMainMenuPanel();
 
-        // Hauptmenü anzeigen
         add(mainMenuPanel);
 
         setVisible(true);
     }
 
+    /**
+     * Erstellt das Hauptmenü-Panel mit Buttons für verschiedene Aktionen.
+     *
+     * @return Das erstellte JPanel mit dem Hauptmenü.
+     */
     private JPanel createMainMenuPanel() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS)); // Vertikale Anordnung
 
-        // Überschrift hinzufügen
         JLabel titleLabel = new JLabel("ITP-Lernplattform");
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24)); // Schriftgröße und Stil setzen
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // Zentrieren
 
-        // Buttons erstellen
         JButton startQuizButton = new JButton("4B1W");
         JButton editQuestionsButton = new JButton("Fragen bearbeiten (4B1W)");
         JButton exitButton = new JButton("Beenden");
 
-        // Buttons mittig ausrichten
         startQuizButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         editQuestionsButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         exitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -46,7 +46,6 @@ public class MainMenu extends JFrame {
             }
         });
 
-        // Aktion für den "Fragen bearbeiten"-Button
         editQuestionsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -55,7 +54,6 @@ public class MainMenu extends JFrame {
             }
         });
 
-        // Aktion für den "Beenden"-Button
         exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -63,7 +61,6 @@ public class MainMenu extends JFrame {
             }
         });
 
-        // Komponenten zum Panel hinzufügen
         panel.add(Box.createVerticalGlue());
         panel.add(titleLabel);
         panel.add(Box.createRigidArea(new Dimension(0, 30))); // Abstand zur Überschrift
@@ -77,6 +74,11 @@ public class MainMenu extends JFrame {
         return panel;
     }
 
+    /**
+     * Startet das Spiel "4 Bilder 1 Wort", indem das Model, die View und der Controller initialisiert werden.
+     * Falls eine Datei mit Fragen existiert, wird diese geladen und der Inhalt zufällig durchmischt.
+     * Das Hauptmenü-Fenster wird anschließend geschlossen.
+     */
     private void launchQuiz() {
         Model4B1W model = new Model4B1W();
 

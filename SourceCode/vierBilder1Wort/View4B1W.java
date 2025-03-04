@@ -51,7 +51,11 @@ public class View4B1W extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
     }
-
+    /**
+     * Aktualisiert die angezeigten Bilder mit den übergebenen URLs.
+     *
+     * @param imageUrls Ein Array mit 4 Bild-URLs für die aktuelle Frage.
+     */
     public void updateImages(URL[] imageUrls) {
         for (int i = 0; i < imageUrls.length; i++) {
             try {
@@ -77,7 +81,11 @@ public class View4B1W extends JFrame {
     public void setFeedback(String feedback) {
         feedbackLabel.setText(feedback);  // Feedback anzeigen
     }
-
+    /**
+     * Aktualisiert die Anzeige des Punktestands.
+     *
+     * @param score Der neue Punktestand, der angezeigt werden soll.
+     */
     public void updateScore(int score) {
         scoreLabel.setText("Punktestand: " + score);  // Punktestand anzeigen
     }
@@ -93,7 +101,9 @@ public class View4B1W extends JFrame {
     public JButton getMainMenuButton() {
         return mainMenuButton;  // Zugriff auf den Hauptmenü-Button
     }
-
+    /**
+     * Wechselt zurück ins Hauptmenü, indem das aktuelle Fenster geschlossen und das Hauptmenü geöffnet wird.
+     */
     public void showMainMenu() {
         // Hauptmenü anzeigen
         dispose(); // Schließt das aktuelle Fenster

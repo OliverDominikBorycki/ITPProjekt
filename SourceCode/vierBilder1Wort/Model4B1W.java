@@ -10,9 +10,12 @@ public class Model4B1W {
     private int score = 0;
 
     public Model4B1W() {
-        shuffleWordsAndImages();
     }
 
+    /**
+     * Mischt die Reihenfolge der gespeicherten Fragen und Bilder zufällig,
+     * um bei jedem Neustart eine neue Reihenfolge zu erhalten.
+     */
     public void shuffleWordsAndImages() {
         Random random = new Random();
         for (int i = questionCount - 1; i > 0; i--) {
@@ -27,7 +30,11 @@ public class Model4B1W {
             imageUrls[j] = tempImages;
         }
     }
-
+    /**
+     * Gibt die aktuellen Bilder für die aktuelle Frage zurück.
+     *
+     * @return Ein Array mit vier URL-Objekten, die zu den Bildern gehören.
+     */
     public URL[] getCurrentImages() {
         String[] urls = imageUrls[currentIndex];
         URL[] urlObjects = new URL[4];
@@ -45,6 +52,13 @@ public class Model4B1W {
         return words[currentIndex];
     }
 
+    /**
+     * Überprüft, ob die eingegebene Antwort korrekt ist.
+     * Falls ja, wird der Punktestand erhöht und zur nächsten Frage gewechselt.
+     *
+     * @param answer Die vom Benutzer eingegebene Antwort.
+     * @return true, wenn die Antwort korrekt ist, sonst false.
+     */
     public boolean checkAnswer(String answer) {
         if (answer.equalsIgnoreCase(words[currentIndex])) {
             score++;
@@ -62,8 +76,13 @@ public class Model4B1W {
         return currentIndex < questionCount;
     }
 
-
-
+    /**
+     * Lädt Fragen und Bilder aus einer Datei und speichert sie im internen Array.
+     * Jede Zeile der Datei sollte im Format "Wort|Bild1,Bild2,Bild3,Bild4" vorliegen.
+     *
+     * @param filename Der Dateiname, aus dem die Fragen geladen werden sollen.
+     * @return true, wenn das Laden erfolgreich war, sonst false.
+     */
     public boolean loadFromFile(String filename) {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String line;
@@ -83,6 +102,13 @@ public class Model4B1W {
         }
     }
 
+    /**
+     * Speichert die aktuell geladenen Fragen in einer Datei.
+     * Das Format jeder Zeile ist: "Wort|Bild1,Bild2,Bild3,Bild4".
+     *
+     * @param filename Der Name der Datei, in die gespeichert werden soll.
+     * @return true, wenn das Speichern erfolgreich war, sonst false.
+     */
     public boolean saveToFile(String filename) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename))) {
             for (int i = 0; i < questionCount; i++) {
@@ -104,10 +130,14 @@ public class Model4B1W {
             return false;
         }
     }
+    /**
+     * Startet das Spiel neu, setzt Punktestand und Index zurück
+     * und mischt die Fragen erneut, um eine zufällige Reihenfolge zu erhalten.
+     */
     public void restartGame() {
         currentIndex = 0;
         score = 0;
-        shuffleWordsAndImages(); // Neu mischen, um das Spiel zufällig zu starten
+        shuffleWordsAndImages();
     }
 
 }
