@@ -13,7 +13,7 @@ public class Model4B1W {
         shuffleWordsAndImages();
     }
 
-    private void shuffleWordsAndImages() {
+    public void shuffleWordsAndImages() {
         Random random = new Random();
         for (int i = questionCount - 1; i > 0; i--) {
             int j = random.nextInt(i + 1);

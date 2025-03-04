@@ -23,28 +23,26 @@ public class MainMenu extends JFrame {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS)); // Vertikale Anordnung
 
+        // Überschrift hinzufügen
+        JLabel titleLabel = new JLabel("ITP-Lernplattform");
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 24)); // Schriftgröße und Stil setzen
+        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // Zentrieren
+
+        // Buttons erstellen
         JButton startQuizButton = new JButton("4B1W");
-        JButton exitButton = new JButton("Beenden");
         JButton editQuestionsButton = new JButton("Fragen bearbeiten (4B1W)");
+        JButton exitButton = new JButton("Beenden");
 
         // Buttons mittig ausrichten
         startQuizButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        editQuestionsButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         exitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        editQuestionsButton.setAlignmentX(Component.CENTER_ALIGNMENT); // Hier hinzufügen
 
-        // Aktion für den "Quiz starten"-Button
+
         startQuizButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                launchQuiz(); // Quiz starten
-            }
-        });
-
-        // Aktion für den "Beenden"-Button
-        exitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0); // Programm beenden
+                launchQuiz();
             }
         });
 
@@ -53,22 +51,31 @@ public class MainMenu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new ControllerBearbeiten(new ModelBearbeiten(), new ViewBearbeiten());
-                dispose(); // Hauptmenü schließen
+                dispose();
             }
         });
 
-        // Buttons zum Panel hinzufügen
+        // Aktion für den "Beenden"-Button
+        exitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+
+        // Komponenten zum Panel hinzufügen
         panel.add(Box.createVerticalGlue());
+        panel.add(titleLabel);
+        panel.add(Box.createRigidArea(new Dimension(0, 30))); // Abstand zur Überschrift
         panel.add(startQuizButton);
-        panel.add(Box.createRigidArea(new Dimension(0, 20))); // Vertikaler Abstand
+        panel.add(Box.createRigidArea(new Dimension(0, 20)));
         panel.add(editQuestionsButton);
-        panel.add(Box.createRigidArea(new Dimension(0, 20))); // Vertikaler Abstand
+        panel.add(Box.createRigidArea(new Dimension(0, 20)));
         panel.add(exitButton);
         panel.add(Box.createVerticalGlue());
 
         return panel;
     }
-
 
     private void launchQuiz() {
         Model4B1W model = new Model4B1W();
@@ -78,11 +85,11 @@ public class MainMenu extends JFrame {
         } catch (Exception e) {
             System.out.println("Fehler beim Laden der Datei: " + e.getMessage());
         }
-
+        model.shuffleWordsAndImages();
         View4B1W view = new View4B1W();
         new Controller4B1W(model, view);
 
-        dispose(); // Hauptmenü schließen
+        dispose();
     }
 
     public static void main(String[] args) {
