@@ -8,6 +8,10 @@ public class ModelBearbeiten {
         loadFromFile();
     }
 
+    /**
+     * Lädt die Fragen aus der Datei in das Array fragenListe.
+     * Falls die Datei nicht existiert oder ein Fehler auftritt, wird eine Fehlermeldung ausgegeben.
+     */
     public void loadFromFile() {
         try (BufferedReader reader = new BufferedReader(new FileReader(dateiName))) {
             String line;
@@ -35,6 +39,10 @@ public class ModelBearbeiten {
         }
     }
 
+    /**
+     * Speichert die aktuellen Fragen aus fragenListe in die Datei.
+     * Falls ein Fehler auftritt, wird eine Fehlermeldung ausgegeben.
+     */
     public void saveToFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(dateiName))) {
             for (String frage : fragenListe) {
@@ -45,7 +53,11 @@ public class ModelBearbeiten {
             System.out.println("Fehler beim Speichern der Datei: " + e.getMessage());
         }
     }
-
+    /**
+     * Fügt eine neue Frage zur Liste hinzu und speichert sie in der Datei.
+     *
+     * @param frage Die hinzuzufügende Frage.
+     */
     public void addFrage(String frage) {
         // Neues Array mit +1 Platz erstellen
         String[] neu = new String[fragenListe.length + 1];
@@ -66,6 +78,10 @@ public class ModelBearbeiten {
     public String[] getFragenListe() {
         return fragenListe;
     }
+    /**
+     * Entfernt die zuletzt hinzugefügte Frage aus der Liste und speichert die Änderung in der Datei.
+     * Falls keine Fragen vorhanden sind, wird nichts unternommen.
+     */
     public void removeLetzteFrage() {
         if (fragenListe.length == 0) return;
 
