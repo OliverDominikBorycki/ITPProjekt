@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ITPProjekt:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ITPProjekt_jar</output-path>
+    <root id="archive" name="ITPProjekt.jar">
+      <element id="module-output" name="ITPProjekt" />
+      <element id="library" level="project" name="ITPProjekt" />
+    </root>
+  </artifact>
+</component>

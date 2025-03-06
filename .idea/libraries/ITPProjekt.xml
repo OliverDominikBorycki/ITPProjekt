@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="ITPProjekt">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/SourceCode" />
+      <root url="file://$PROJECT_DIR$/SourceCode/Hauptmenu" />
+    </SOURCES>
+  </library>
+</component>
